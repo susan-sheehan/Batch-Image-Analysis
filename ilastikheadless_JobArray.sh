@@ -1,5 +1,8 @@
 #!/bin/bash -vl
-#PBS -l nodes=1;ppn-16;walltime=24:00:00
+#PBS -l nodes=1;ppn-32;
+#PBS -l walltime=100:00:00
+#PBS -t 127,162,163
+#PBS -q batch 
 
 USERDATASHARE="/hpcdata/sms/GlomerularIdentification/"
 
