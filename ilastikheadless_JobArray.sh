@@ -4,10 +4,14 @@
 #PBS -t 127,162,163
 #PBS -q batch 
 
+
+module load ilastik
 USERDATASHARE="/hpcdata/sms/GlomerularIdentification/"
 
 cd $USERDATASHARE"/QSUB_IMAGE_DATA/132312M"
 find . -type d -name "*" | sed 's/^\.\///' | xargs -n1 -I{} echo $PWD'/'{} | tail -n +2 > input_dir.list
+input_dir.list=$PBS_ARRAYID
+
 
 function headless_ilastik {
 name=${1##*\/}
@@ -21,7 +25,7 @@ run_ilastik.sh --headless \
 	--output_filename_format={dataset_dir}/{nickname}"_Simple Segmentation.tiff" $( cat $USERDATASHARE'/INPUT_FILES/'$name'.list' )
 }
 export -f headless_ilastik
-module load ilastik
+
 
 ihome='/hpcdata/sms/GlomerularIdentification/INPUT_FILES'
 INPUT=$ihome'/input_dir.list'
