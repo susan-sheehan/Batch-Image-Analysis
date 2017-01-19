@@ -4,6 +4,7 @@
 #PBS -t 127,162,163
 #PBS -q batch 
 
+cd ${PBS_O_WORKDIR}
 
 module load ilastik
 USERDATASHARE="/hpcdata/sms/GlomerularIdentification/"
